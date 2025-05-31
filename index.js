@@ -1,10 +1,19 @@
-const dotenv = require('dotenv');
-dotenv.config();
-const express = require('express');
+import bodyParser from 'body-parser';
+import 'dotenv/config';
+import express from 'express';
+import OpenAI from 'openai';
+
 
 
 const app = express();
 
+app.use(bodyParser.json())
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+const openai = new OpenAI({
+    apiKey: process.env.API_KEY
+})
 
 app.listen(process.env.PORT, (error) =>{
     if(!error)
